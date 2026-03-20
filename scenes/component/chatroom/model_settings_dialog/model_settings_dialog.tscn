@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://model_settings_dialog"]
+
+[ext_resource type="Script" path="res://scenes/component/chatroom/model_settings_dialog/model_settings_dialog.gd" id="1_model_settings_dialog"]
+
+[node name="ModelSettingsDialog" type="ConfirmationDialog"]
+auto_translate_mode = 1
+title = "模型设置"
+initial_position = 1
+size = Vector2i(400, 300)
+script = ExtResource("1_model_settings_dialog")
+
+[node name="SettingsVBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 392.0
+offset_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="ModelTypeLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "模型类型"
+
+[node name="ModelTypeOptionButton" type="OptionButton" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="SettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="ApiUrlLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "API 地址"
+
+[node name="ApiUrlLineEdit" type="LineEdit" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "https://api.example.com/v1/chat/completions"
+
+[node name="ApiKeyLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "API 密钥"
+
+[node name="ApiKeyLineEdit" type="LineEdit" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "sk-..."
+secret = true
+
+[node name="ModelNameLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "模型名称"
+
+[node name="ModelNameLineEdit" type="LineEdit" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "gpt-3.5-turbo"
+
+[node name="ModelNameHintLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+
+[node name="HSeparator2" type="HSeparator" parent="SettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="TemperatureLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "温度 (0.0 - 2.0)"
+
+[node name="TemperatureSpinBox" type="SpinBox" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 2.0
+step = 0.1
+value = 0.7
+
+[node name="MaxTokensLabel" type="Label" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "最大令牌数"
+
+[node name="MaxTokensSpinBox" type="SpinBox" parent="SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1
+max_value = 4096
+step = 100
+value = 1000

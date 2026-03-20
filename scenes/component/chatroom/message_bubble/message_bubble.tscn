@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://m1e2s3s4a5g6e7b8u9b0b1l2e3"]
+
+[ext_resource type="Script" path="res://scenes/component/chatroom/message_bubble/message_bubble.gd" id="1_message_bubble"]
+
+[node name="MessageBubble" type="Control"]
+layout_mode = 2
+custom_minimum_size = Vector2(300, 60)
+script = ExtResource("1_message_bubble")
+
+[node name="MessageContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AvatarContainer" type="VBoxContainer" parent="MessageContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(48, 0)
+size_flags_horizontal = 0
+theme_override_constants/separation = 4
+
+[node name="AvatarTextureRect" type="TextureRect" parent="MessageContainer/AvatarContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48, 48)
+size_flags_horizontal = 0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SenderNameLabel" type="Label" parent="MessageContainer/AvatarContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+text = "Sender Name"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BubbleContainer" type="MarginContainer" parent="MessageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BackgroundPanel" type="Panel" parent="MessageContainer/BubbleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BubbleMarginContainer" type="MarginContainer" parent="MessageContainer/BubbleContainer/BackgroundPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ContentLabel" type="RichTextLabel" parent="MessageContainer/BubbleContainer/BackgroundPanel/BubbleMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Message content will appear here..."
+bbcode_enabled = true

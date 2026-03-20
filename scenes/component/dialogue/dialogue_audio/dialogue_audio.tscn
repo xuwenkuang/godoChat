@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dialogue_audio_component"]
+
+[ext_resource type="Script" path="res://scenes/component/dialogue/dialogue_audio/dialogue_audio.gd" id="1_dialogue_audio"]
+
+[node name="DialogueAudio" type="Node"]
+script = ExtResource("1_dialogue_audio")
+
+[node name="TypingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.05
+one_shot = false

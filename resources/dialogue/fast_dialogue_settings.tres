@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueSettings" load_steps=2 format=3 uid="uid://e2f3g4h5i6j7k8l9m0n1o2p3q4r5s6t7"]
+
+[ext_resource type="Script" path="res://resources/dialogue/dialogue_settings.gd" id="1_jkl012"]
+
+[resource]
+script = ExtResource("1_jkl012")
+temperature = 0.5
+top_p = 0.85
+top_k = 30
+max_tokens = 500
+min_tokens = 10
+frequency_penalty = 0.0
+presence_penalty = 0.0
+repetition_penalty = 1.0
+sampling_strategy = 0
+enable_nucleus_sampling = true
+enable_top_k_sampling = false
+enable_beam_search = false
+beam_width = 4
+beam_diversity = 0.5
+enable_streaming = true
+streaming_speed = 0.03
+streaming_delay = 0.0
+chunk_size = 20
+enable_realtime_display = true
+max_memory_entries = 50
+enable_context_memory = true
+context_window_size = 4096
+memory_retention_time = 3600.0
+enable_memory_compression = false
+memory_compression_ratio = 0.7
+stop_sequences = []
+seed = -1
+enable_deterministic_output = false
+custom_parameters = {}

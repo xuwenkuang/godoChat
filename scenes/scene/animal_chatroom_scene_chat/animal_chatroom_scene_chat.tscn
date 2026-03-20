@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dhw1xnjpmk2i8"]
+
+[ext_resource type="Script" uid="uid://tse3yv7qwun4" path="res://scenes/scene/animal_chatroom_scene_chat/animal_chatroom_scene_chat.gd" id="1_chatroom_screen_script"]
+[ext_resource type="PackedScene" uid="uid://k5xt8llrybgm" path="res://scenes/node/menu/menu_button/menu_button.tscn" id="2_menu_button"]
+[ext_resource type="PackedScene" uid="uid://btjnss8x2frmj" path="res://scenes/component/chatroom/animal_character_list/animal_character_list.tscn" id="3_animal_character_list"]
+[ext_resource type="PackedScene" uid="uid://c8ihlux2kr2i6" path="res://scenes/component/chatroom/character_info_panel/character_info_panel.tscn" id="4_character_info_panel"]
+[ext_resource type="PackedScene" uid="uid://dvaoqfbl1b4wr" path="res://scenes/component/chatroom/message_input_box/message_input_box.tscn" id="5_message_input_box"]
+[ext_resource type="AudioStream" uid="uid://rupme3gln8yu" path="res://assets/audio/sfx/kenny_ui/ogg/click1.ogg" id="6_click1_audio"]
+[ext_resource type="AudioStream" uid="uid://rhbye6crnegp" path="res://assets/audio/sfx/kenny_ui/ogg/switch1.ogg" id="7_switch1_audio"]
+
+[node name="ChatroomScreen" type="Control" unique_id=2088367030]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_chatroom_screen_script")
+
+[node name="NPCDialoguesContainer" type="Node" parent="." unique_id=2113153453]
+
+[node name="MessageSendAudio" type="AudioStreamPlayer" parent="." unique_id=1866464225]
+unique_name_in_owner = true
+stream = ExtResource("6_click1_audio")
+bus = &"SFX"
+
+[node name="MessageReceiveAudio" type="AudioStreamPlayer" parent="." unique_id=289570921]
+unique_name_in_owner = true
+stream = ExtResource("7_switch1_audio")
+bus = &"SFX"
+
+[node name="ChatroomScreenMarginContainer" type="MarginContainer" parent="." unique_id=1389894229]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ChatroomScreenHBoxContainer" type="HBoxContainer" parent="ChatroomScreenMarginContainer" unique_id=760134089]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AnimalCharacterListPanel" type="PanelContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer" unique_id=683792526]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+
+[node name="AnimalCharacterList" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/AnimalCharacterListPanel" unique_id=1684557338 instance=ExtResource("3_animal_character_list")]
+layout_mode = 2
+
+[node name="ChatroomMainVBoxContainer" type="VBoxContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer" unique_id=174175849]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ChatroomTopHBoxContainer" type="HBoxContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer" unique_id=904281599]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PaddingMarginContainer" type="MarginContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomTopHBoxContainer" unique_id=257178550]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MessageInputHBoxContainer" type="HBoxContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomTopHBoxContainer/PaddingMarginContainer" unique_id=619254921]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="MessageInputBox" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomTopHBoxContainer/PaddingMarginContainer/MessageInputHBoxContainer" unique_id=1243307243 instance=ExtResource("5_message_input_box")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomTopHBoxContainer" unique_id=321281558 instance=ExtResource("2_menu_button")]
+unique_name_in_owner = true
+layout_mode = 2
+text = " ← "
+flat = true
+label = "←"
+padding_spaces = 1
+
+[node name="SettingsButton" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomTopHBoxContainer" unique_id=2130638497 instance=ExtResource("2_menu_button")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "  ⚙  "
+flat = true
+label = "⚙"
+padding_spaces = 2
+
+[node name="ChatroomContentHBoxContainer" type="HBoxContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer" unique_id=509190909]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="CharacterInfoPanelPanel" type="PanelContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomContentHBoxContainer" unique_id=1653603252]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CharacterInfoPanel" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomContentHBoxContainer/CharacterInfoPanelPanel" unique_id=904428333 instance=ExtResource("4_character_info_panel")]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+
+[node name="ChatWindowPanel" type="PanelContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomContentHBoxContainer" unique_id=1452521816]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChatWindowMarginContainer" type="MarginContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomContentHBoxContainer/ChatWindowPanel" unique_id=1260150432]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 23
+
+[node name="ChatWindowScrollContainer" type="ScrollContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomContentHBoxContainer/ChatWindowPanel/ChatWindowMarginContainer" unique_id=1231344021]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, -30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChatWindowVBoxContainer" type="VBoxContainer" parent="ChatroomScreenMarginContainer/ChatroomScreenHBoxContainer/ChatroomMainVBoxContainer/ChatroomContentHBoxContainer/ChatWindowPanel/ChatWindowMarginContainer/ChatWindowScrollContainer" unique_id=95617019]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8

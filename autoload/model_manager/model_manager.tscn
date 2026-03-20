@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8k7n3p6q9r2s"]
+
+[ext_resource type="Script" path="res://autoload/model_manager/model_manager.gd" id="1_model_manager"]
+
+[node name="ModelManager" type="Node"]
+script = ExtResource("1_model_manager")

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dfw0kudhljwr3"]
+
+[ext_resource type="Script" uid="uid://lmbc8bsx17g4" path="res://scenes/scene/animal_chatroom_scene/animal_chatroom_scene.gd" id="1_animal_chatroom"]
+[ext_resource type="PackedScene" uid="uid://k5xt8llrybgm" path="res://scenes/node/menu/menu_button/menu_button.tscn" id="2_menu_button"]
+[ext_resource type="AudioStream" uid="uid://rupme3gln8yu" path="res://assets/audio/sfx/kenny_ui/ogg/click1.ogg" id="6_click1_audio"]
+[ext_resource type="AudioStream" uid="uid://rhbye6crnegp" path="res://assets/audio/sfx/kenny_ui/ogg/switch1.ogg" id="7_switch1_audio"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5h1lr"]
+
+[node name="AnimalChatroomScene" type="Control" unique_id=1887056892]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_animal_chatroom")
+
+[node name="NPCDialoguesContainer" type="Node" parent="." unique_id=2113153453]
+
+[node name="MessageSendAudio" type="AudioStreamPlayer" parent="." unique_id=1866464225]
+unique_name_in_owner = true
+stream = ExtResource("6_click1_audio")
+bus = &"SFX"
+
+[node name="MessageReceiveAudio" type="AudioStreamPlayer" parent="." unique_id=289570921]
+unique_name_in_owner = true
+stream = ExtResource("7_switch1_audio")
+bus = &"SFX"
+
+[node name="StartScreen" type="Control" parent="." unique_id=726589300]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartScreenCenterContainer" type="CenterContainer" parent="StartScreen" unique_id=1047277599]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartScreenVBoxContainer" type="VBoxContainer" parent="StartScreen/StartScreenCenterContainer" unique_id=1307001902]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="TitleLabel" type="Label" parent="StartScreen/StartScreenCenterContainer/StartScreenVBoxContainer" unique_id=1496145362]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+label_settings = SubResource("LabelSettings_5h1lr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" parent="StartScreen/StartScreenCenterContainer/StartScreenVBoxContainer" unique_id=1130563720 instance=ExtResource("2_menu_button")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "              Play              "
+label = "MENU_LABEL_PLAY"
+padding_spaces = 14

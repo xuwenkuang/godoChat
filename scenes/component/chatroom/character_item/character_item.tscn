@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7yikclejg7j7"]
+
+[ext_resource type="Script" path="res://scenes/component/chatroom/character_item/character_item.gd" id="1_character_item"]
+
+[node name="CharacterItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_minimum_size = Vector2(0, 80)
+mouse_filter = 0
+script = ExtResource("1_character_item")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+mouse_filter = 2
+
+[node name="AvatarTextureRect" type="TextureRect" parent="BackgroundPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 80)
+size_flags_horizontal = 0
+expand_mode = 1
+stretch_mode = 5
+unique_name_in_owner = true
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="BackgroundPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Character Name"
+horizontal_alignment = 1
+autowrap_mode = 3
+unique_name_in_owner = true
+mouse_filter = 2
+
+[node name="StatusLabel" type="Label" parent="BackgroundPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+text = "Online"
+horizontal_alignment = 1
+mouse_filter = 2
+
+[node name="SelectionIndicator" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+unique_name_in_owner = true
