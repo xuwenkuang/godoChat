@@ -12,6 +12,7 @@ signal chatroom_ended
 
 var animal_character_list: AnimalCharacterList
 var character_info_panel: CharacterInfoPanel
+var animal_inventory_panel: AnimalInventoryPanel
 var message_input_box: MessageInputBox
 var settings_button: MenuButtonClass
 var back_button: MenuButtonClass
@@ -88,6 +89,9 @@ func _connect_signals() -> void:
 	
 	if animal_character_list:
 		animal_character_list.character_selected.connect(_on_character_selected)
+	
+	if character_info_panel:
+		character_info_panel.avatar_clicked.connect(_on_avatar_clicked)
 
 
 func _load_animal_profiles() -> void:
@@ -499,6 +503,87 @@ func _on_character_selected(npc_id: String) -> void:
 	LogWrapper.debug(self, "Character selected: %s" % npc_id)
 
 
+func _on_avatar_clicked(npc_id: String) -> void:
+	LogWrapper.debug(self, "Avatar clicked for NPC: %s" % npc_id)
+	_show_animal_inventory_panel(npc_id)
+
+
+func _show_animal_inventory_panel(npc_id: String) -> void:
+	if animal_inventory_panel:
+		LogWrapper.warning(self, "Inventory panel already open")
+		return
+	
+	var profile: NPCProfile = _animal_profiles.get(npc_id)
+	if not profile:
+		LogWrapper.warning(self, "No profile found for NPC: %s" % npc_id)
+		return
+	
+	var inventory_panel_scene: PackedScene = load("res://scenes/component/chatroom/animal_inventory_panel/animal_inventory_panel.tscn")
+	if not inventory_panel_scene:
+		LogWrapper.error(self, "Failed to load inventory panel scene")
+		return
+	
+	animal_inventory_panel = inventory_panel_scene.instantiate()
+	if not animal_inventory_panel:
+		LogWrapper.error(self, "Failed to instantiate inventory panel")
+		return
+	
+	add_child(animal_inventory_panel)
+	animal_inventory_panel.close_requested.connect(_on_inventory_panel_close_requested)
+	
+	var animal_profile: AnimalProfile = _get_animal_profile(npc_id)
+	if animal_profile:
+		animal_inventory_panel.set_animal_profile(animal_profile, profile)
+	
+	LogWrapper.debug(self, "Inventory panel opened for: %s" % npc_id)
+
+
+func _on_inventory_panel_close_requested() -> void:
+	if animal_inventory_panel:
+		animal_inventory_panel.queue_free()
+		animal_inventory_panel = null
+	
+	LogWrapper.debug(self, "Inventory panel closed")
+
+
+func _get_animal_profile(npc_id: String) -> AnimalProfile:
+	var profile_script_path: String = ""
+	
+	match npc_id:
+		"elephant":
+			profile_script_path = "res://resources/dialogue/animal_profiles/elephant_profile.gd"
+		"panda":
+			profile_script_path = "res://resources/dialogue/animal_profiles/panda_profile.gd"
+		"giraffe":
+			profile_script_path = "res://resources/dialogue/animal_profiles/giraffe_profile.gd"
+		"hippo":
+			profile_script_path = "res://resources/dialogue/animal_profiles/hippo_profile.gd"
+		"monkey":
+			profile_script_path = "res://resources/dialogue/animal_profiles/monkey_profile.gd"
+		"parrot":
+			profile_script_path = "res://resources/dialogue/animal_profiles/parrot_profile.gd"
+		"penguin":
+			profile_script_path = "res://resources/dialogue/animal_profiles/penguin_profile.gd"
+		"pig":
+			profile_script_path = "res://resources/dialogue/animal_profiles/pig_profile.gd"
+		"rabbit":
+			profile_script_path = "res://resources/dialogue/animal_profiles/rabbit_profile.gd"
+		"snake":
+			profile_script_path = "res://resources/dialogue/animal_profiles/snake_profile.gd"
+	
+	if profile_script_path.is_empty():
+		return null
+	
+	var profile_script: GDScript = load(profile_script_path) as GDScript
+	if not profile_script:
+		return null
+	
+	if profile_script.has_method("create_animal_profile"):
+		return profile_script.create_animal_profile()
+	
+	return null
+
+
 func _update_character_info_panel() -> void:
 	if not character_info_panel:
 		return
@@ -587,6 +672,12 @@ func _disconnect_all_signals() -> void:
 	
 	if animal_character_list and animal_character_list.character_selected.is_connected(_on_character_selected):
 		animal_character_list.character_selected.disconnect(_on_character_selected)
+	
+	if character_info_panel and character_info_panel.avatar_clicked.is_connected(_on_avatar_clicked):
+		character_info_panel.avatar_clicked.disconnect(_on_avatar_clicked)
+	
+	if animal_inventory_panel and animal_inventory_panel.close_requested.is_connected(_on_inventory_panel_close_requested):
+		animal_inventory_panel.close_requested.disconnect(_on_inventory_panel_close_requested)
 	
 	for npc_id: String in _npc_dialogues.keys():
 		var npc_dialogue: NPCDialogue = _npc_dialogues[npc_id]

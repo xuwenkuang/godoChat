@@ -1,5 +1,5 @@
 class_name SnakeProfile
-extends Resource
+extends AnimalProfile
 
 static func create_profile() -> NPCProfile:
 	var profile: NPCProfile = NPCProfile.new()
@@ -29,3 +29,12 @@ static func create_profile() -> NPCProfile:
 	
 	profile._validate_profile()
 	return profile
+
+static func create_animal_profile() -> AnimalProfile:
+	var animal_profile: AnimalProfile = AnimalProfile.new()
+	animal_profile.inventory = {
+		"智慧书": 1,
+		"眼镜": 1,
+		"草药": 3
+	}
+	return animal_profile

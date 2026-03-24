@@ -1,6 +1,8 @@
 class_name CharacterInfoPanel
 extends Control
 
+signal avatar_clicked(npc_id: String)
+
 @export_category("UI References")
 @onready var avatar_texture_rect: TextureRect = %AvatarTextureRect
 @onready var name_label: Label = %NameLabel
@@ -9,7 +11,12 @@ extends Control
 @onready var background_story_label: RichTextLabel = %BackgroundStoryLabel
 @onready var speaking_style_label: RichTextLabel = %SpeakingStyleLabel
 
+const NORMAL_MODULATE: Color = Color.WHITE
+const HOVER_MODULATE: Color = Color(0.8, 0.8, 0.8, 1.0)
+
 var _current_profile: NPCProfile = null
+var _is_hovered: bool = false
+var _tween: Tween
 
 func _ready() -> void:
 	_connect_signals()
@@ -17,6 +24,11 @@ func _ready() -> void:
 
 
 func _connect_signals() -> void:
+	if avatar_texture_rect:
+		avatar_texture_rect.gui_input.connect(_on_avatar_gui_input)
+		avatar_texture_rect.mouse_entered.connect(_on_avatar_mouse_entered)
+		avatar_texture_rect.mouse_exited.connect(_on_avatar_mouse_exited)
+	
 	if not Engine.is_editor_hint():
 		SignalBus.language_changed.connect(_on_language_changed)
 
@@ -102,6 +114,61 @@ func get_current_profile() -> NPCProfile:
 
 func _on_language_changed(_locale: String) -> void:
 	_update_ui()
+
+
+func _on_avatar_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if _current_profile:
+			avatar_clicked.emit(_current_profile.npc_id)
+			_play_click_animation()
+
+
+func _on_avatar_mouse_entered() -> void:
+	_is_hovered = true
+	_play_hover_animation()
+
+
+func _on_avatar_mouse_exited() -> void:
+	_is_hovered = false
+	_play_normal_animation()
+
+
+func _play_hover_animation() -> void:
+	if not avatar_texture_rect:
+		return
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = create_tween()
+	_tween.tween_property(avatar_texture_rect, "modulate", HOVER_MODULATE, 0.2)
+	_tween.play()
+
+
+func _play_normal_animation() -> void:
+	if not avatar_texture_rect:
+		return
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = create_tween()
+	_tween.tween_property(avatar_texture_rect, "modulate", NORMAL_MODULATE, 0.2)
+	_tween.play()
+
+
+func _play_click_animation() -> void:
+	if not avatar_texture_rect:
+		return
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = create_tween()
+	_tween.set_parallel(true)
+	_tween.tween_property(avatar_texture_rect, "scale", Vector2(0.95, 0.95), 0.1)
+	_tween.tween_property(avatar_texture_rect, "scale", Vector2(1.0, 1.0), 0.1).set_delay(0.1)
+	_tween.play()
 
 
 func _exit_tree() -> void:

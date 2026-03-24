@@ -1,5 +1,5 @@
 class_name GiraffeProfile
-extends Resource
+extends AnimalProfile
 
 static func create_profile() -> NPCProfile:
 	var profile: NPCProfile = NPCProfile.new()
@@ -29,3 +29,12 @@ static func create_profile() -> NPCProfile:
 	
 	profile._validate_profile()
 	return profile
+
+static func create_animal_profile() -> AnimalProfile:
+	var animal_profile: AnimalProfile = AnimalProfile.new()
+	animal_profile.inventory = {
+		"望远镜": 1,
+		"地图": 2,
+		"树叶": 6
+	}
+	return animal_profile

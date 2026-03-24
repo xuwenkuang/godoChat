@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://ckrk0g82ldp6a"]
+
+[ext_resource type="Script" uid="uid://b6pctnivva5g7" path="res://scenes/component/chatroom/animal_inventory_panel/animal_inventory_panel.gd" id="1_animal_inventory_panel"]
+
+[node name="AnimalInventoryPanel" type="Control" unique_id=644387140]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_animal_inventory_panel")
+
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=1979471656]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundPanel" unique_id=1334891470]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel" unique_id=1355555026]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="Panel" parent="BackgroundPanel/MarginContainer" unique_id=838224954]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BackgroundPanel/MarginContainer/MainPanel" unique_id=1072297731]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -124.0
+offset_right = 78.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2" unique_id=1203583901]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="HeaderContainer" type="HBoxContainer" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer" unique_id=676773526]
+layout_mode = 2
+
+[node name="AvatarTextureRect" type="TextureRect" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer/HeaderContainer" unique_id=1916154696]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer/HeaderContainer" unique_id=1091860299]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer/HeaderContainer/VBoxContainer" unique_id=1676616031]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "动物名称 的背包"
+
+[node name="InventoryLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer/HeaderContainer/VBoxContainer" unique_id=1354166658]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 14
+text = "背包内容: 空"
+
+[node name="HSeparator" type="HSeparator" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer" unique_id=1120442781]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer" unique_id=1541981849]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="InventoryContainer" type="VBoxContainer" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer/ScrollContainer" unique_id=1357229519]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="HSeparator2" type="HSeparator" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer" unique_id=916837747]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer" unique_id=1213140057]
+unique_name_in_owner = true
+layout_mode = 2
+text = "关闭"

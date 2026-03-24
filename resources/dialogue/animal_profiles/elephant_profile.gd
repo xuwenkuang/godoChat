@@ -1,5 +1,5 @@
 class_name ElephantProfile
-extends Resource
+extends AnimalProfile
 
 static func create_profile() -> NPCProfile:
 	var profile: NPCProfile = NPCProfile.new()
@@ -29,3 +29,12 @@ static func create_profile() -> NPCProfile:
 	
 	profile._validate_profile()
 	return profile
+
+static func create_animal_profile() -> AnimalProfile:
+	var animal_profile: AnimalProfile = AnimalProfile.new()
+	animal_profile.inventory = {
+		"香蕉": 5,
+		"苹果": 3,
+		"水壶": 1
+	}
+	return animal_profile
