@@ -62,5 +62,4 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 text = "              Play              "
-label = "MENU_LABEL_PLAY"
-padding_spaces = 14
+padding_spaces = 15

@@ -91,6 +91,7 @@ text = "动物名称 的背包"
 
 [node name="InventoryLabel" type="Label" parent="BackgroundPanel/MarginContainer/MainPanel/MarginContainer2/VBoxContainer/HeaderContainer/VBoxContainer" unique_id=1354166658]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_font_sizes/font_size = 14

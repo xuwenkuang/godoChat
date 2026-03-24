@@ -31,3 +31,4 @@ res://resources/dialogue/animal_profiles/snake_profile.gd
 res://scenes/component/chatroom/animal_inventory_panel/animal_inventory_panel.gd
 res://resources/dialogue/animal_profile.gd
 res://scenes/component/chatroom/animal_inventory_panel/animal_inventory_panel.tscn
+res://scenes/scene/animal_chatroom_scene/animal_chatroom_scene.tscn
