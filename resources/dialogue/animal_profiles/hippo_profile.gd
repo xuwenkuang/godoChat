@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/hippo.png")
 	profile.identity = "河边的守护者"
 	profile.personality = "稳重、强壮、保护领地、看似慵懒实则警惕"
+	profile.mbti = "ISTP"
 	profile.background_story = "生活在河边，是水域的守护者。大部分时间在水中休息，但一旦被激怒会变得非常危险。对朋友非常忠诚，会全力保护自己的领地和伙伴。"
 	profile.speaking_style = "语速缓慢，声音低沉厚重，说话简洁有力，喜欢强调'我的领地'和'保护'。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.SERIOUS

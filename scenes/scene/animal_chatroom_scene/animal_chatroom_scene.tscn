@@ -63,3 +63,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "              Play              "
 padding_spaces = 15
+
+[node name="ConfigItemButton" parent="StartScreen/StartScreenCenterContainer/StartScreenVBoxContainer" unique_id=1130563721 instance=ExtResource("2_menu_button")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "              配置物品              "
+padding_spaces = 15

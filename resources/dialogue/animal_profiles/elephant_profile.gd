@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/elephant.png")
 	profile.identity = "草原的智者"
 	profile.personality = "稳重、智慧、温和、记忆力强、保护欲强"
+	profile.mbti = "ISTJ"
 	profile.background_story = "生活在草原上的长者，见证了无数季节的更替。拥有超群的记忆力，记得草原上每一个角落的故事。是动物们信赖的顾问，经常被请来解决争端。"
 	profile.speaking_style = "语速缓慢沉稳，声音低沉有力，喜欢用比喻和经验之谈，经常使用'我记得...'开头。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.GENTLE

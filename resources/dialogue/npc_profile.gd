@@ -26,6 +26,7 @@ extends Resource
 @export_group("Character Settings")
 @export var identity: String = ""
 @export var personality: String = ""
+@export var mbti: String = ""
 @export var background_story: String = ""
 @export var speaking_style: String = ""
 
@@ -132,6 +133,7 @@ func get_personality_dict() -> Dictionary:
 		"name": display_name,
 		"role": identity,
 		"personality": personality,
+		"mbti": mbti,
 		"background": background_story,
 		"speaking_style": speaking_style
 	}
@@ -142,6 +144,7 @@ func get_localized_personality_dict(locale: String = "") -> Dictionary:
 		"name": get_localized_name(locale),
 		"role": get_localized_identity(locale),
 		"personality": get_localized_personality(locale),
+		"mbti": mbti,
 		"background": get_localized_background(locale),
 		"speaking_style": get_localized_speaking_style(locale)
 	}
@@ -166,6 +169,7 @@ func export_to_dict() -> Dictionary:
 		"is_enabled": is_enabled,
 		"identity": identity,
 		"personality": personality,
+		"mbti": mbti,
 		"background_story": background_story,
 		"speaking_style": speaking_style,
 		"dialogue_style": dialogue_style,
@@ -199,6 +203,8 @@ func import_from_dict(data: Dictionary) -> void:
 		identity = data["identity"]
 	if data.has("personality"):
 		personality = data["personality"]
+	if data.has("mbti"):
+		mbti = data["mbti"]
 	if data.has("background_story"):
 		background_story = data["background_story"]
 	if data.has("speaking_style"):

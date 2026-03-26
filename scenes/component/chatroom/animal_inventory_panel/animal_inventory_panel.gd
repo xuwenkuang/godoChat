@@ -11,12 +11,18 @@ signal close_requested()
 @onready var close_button: Button = %CloseButton
 @onready var background_panel: Panel = %BackgroundPanel
 
+@export_category("Item Profile")
+@export var item_profile_manager: ItemProfileManager = null
+@export var tooltip_scene: PackedScene = null
+
 var _current_animal_profile: AnimalProfile = null
 var _current_npc_profile: NPCProfile = null
+var _item_tooltip: ItemTooltip = null
 
 func _ready() -> void:
 	_connect_signals()
 	_setup_initial_state()
+	_setup_tooltip()
 
 
 func _connect_signals() -> void:
@@ -29,6 +35,13 @@ func _connect_signals() -> void:
 
 func _setup_initial_state() -> void:
 	clear_inventory()
+
+
+func _setup_tooltip() -> void:
+	if tooltip_scene:
+		_item_tooltip = tooltip_scene.instantiate()
+		add_child(_item_tooltip)
+		_item_tooltip.mouse_filter = MOUSE_FILTER_IGNORE
 
 
 func set_animal_profile(animal_profile: AnimalProfile, npc_profile: NPCProfile = null) -> void:
@@ -135,7 +148,62 @@ func _create_item_panel(item_name: String, quantity: int) -> Panel:
 	margin_container.add_child(hbox)
 	panel.add_child(margin_container)
 	
+	var item_panel_script: RefCounted = ItemPanelHandler.new(item_name, panel, self)
+	panel.set_meta("handler", item_panel_script)
+	
 	return panel
+
+
+func _on_item_panel_clicked(item_name: String, panel: Panel) -> void:
+	print("=== 物品点击事件 ===")
+	print("物品名称: %s" % item_name)
+	
+	if not item_profile_manager:
+		print("错误: item_profile_manager 未设置")
+		return
+	
+	if _item_tooltip and _item_tooltip.visible:
+		print("隐藏物品提示框")
+		_item_tooltip.hide_tooltip()
+	else:
+		var item_profile: ItemProfile = item_profile_manager.get_item_profile(item_name)
+		if item_profile and _item_tooltip:
+			print("物品ID: %s" % item_profile.item_id)
+			print("物品名称: %s" % item_profile.item_name)
+			print("稀有度: %s" % item_profile.get_rarity_name())
+			print("类型: %s" % item_profile.get_type_name())
+			print("描述: %s" % item_profile.description)
+			print("用途: %s" % item_profile.usage)
+			print("效果: %s" % item_profile.effect)
+			print("价值: %d" % item_profile.value)
+			print("重量: %.1f" % item_profile.weight)
+			print("属性: %s" % item_profile.get_all_properties())
+			print("标签: %s" % item_profile.custom_tags)
+			print("显示物品提示框")
+			_item_tooltip.show_tooltip(item_profile, panel)
+		else:
+			print("警告: 未找到物品 '%s' 的配置信息" % item_name)
+
+
+class ItemPanelHandler extends RefCounted:
+	var _item_name: String
+	var _panel: Panel
+	var _parent: AnimalInventoryPanel
+	
+	func _init(item_name: String, panel: Panel, parent: AnimalInventoryPanel) -> void:
+		_item_name = item_name
+		_panel = panel
+		_parent = parent
+		_panel.gui_input.connect(_on_gui_input)
+	
+	func _on_gui_input(event: InputEvent) -> void:
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			_parent._on_item_panel_clicked(_item_name, _panel)
+	
+	func _notification(what: int) -> void:
+		if what == NOTIFICATION_PREDELETE:
+			if _panel and _panel.gui_input.is_connected(_on_gui_input):
+				_panel.gui_input.disconnect(_on_gui_input)
 
 
 func _on_close_button_pressed() -> void:
@@ -153,3 +221,6 @@ func _exit_tree() -> void:
 	
 	if background_panel and background_panel.gui_input.is_connected(_on_background_gui_input):
 		background_panel.gui_input.disconnect(_on_background_gui_input)
+	
+	if _item_tooltip:
+		_item_tooltip.queue_free()

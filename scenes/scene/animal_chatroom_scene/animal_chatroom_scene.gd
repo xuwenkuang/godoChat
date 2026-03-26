@@ -13,6 +13,7 @@ signal chatroom_ended
 var start_screen: Control
 var title_label: Label
 var start_button: MenuButtonClass
+var config_item_button: MenuButtonClass
 
 var DialogueManager: DialogueManager
 var message_send_audio: AudioStreamPlayer
@@ -20,6 +21,7 @@ var message_receive_audio: AudioStreamPlayer
 
 var _animal_profiles: Dictionary = {}
 var _is_initialized: bool = false
+var _item_config_scene: PackedScene = null
 
 func _ready() -> void:
 	LogWrapper.debug(self, "DEBUG: _ready() called")
@@ -27,10 +29,13 @@ func _ready() -> void:
 	start_screen = $StartScreen
 	title_label = $StartScreen/StartScreenCenterContainer/StartScreenVBoxContainer/TitleLabel
 	start_button = $StartScreen/StartScreenCenterContainer/StartScreenVBoxContainer/StartButton
+	config_item_button = $StartScreen/StartScreenCenterContainer/StartScreenVBoxContainer/ConfigItemButton
 	
 	DialogueManager = get_node("/root/DialogueManager")
 	message_send_audio = $MessageSendAudio
 	message_receive_audio = $MessageReceiveAudio
+	
+	_load_item_config_scene()
 	
 	LogWrapper.debug(self, "DEBUG: Connecting signals")
 	_connect_signals()
@@ -47,6 +52,15 @@ func _enter_tree() -> void:
 		LogWrapper.info(self, "Scene initialized on enter_tree")
 
 
+func _load_item_config_scene() -> void:
+	if not _item_config_scene:
+		_item_config_scene = load("res://scenes/scene/item_config_scene/item_config_scene.tscn") as PackedScene
+		if _item_config_scene:
+			LogWrapper.debug(self, "Item config scene loaded successfully")
+		else:
+			LogWrapper.error(self, "Failed to load item config scene")
+
+
 func _exit_tree() -> void:
 	_cleanup_before_scene_change()
 	LogWrapper.debug(self, "Scene exit_tree cleanup completed")
@@ -57,6 +71,9 @@ func _connect_signals() -> void:
 	
 	if start_button:
 		start_button.confirmed.connect(_on_start_button_pressed)
+	
+	if config_item_button:
+		config_item_button.confirmed.connect(_on_config_item_button_pressed)
 
 
 func _load_animal_profiles() -> void:
@@ -114,6 +131,26 @@ func _on_start_button_pressed() -> void:
 	SceneManagerWrapper.change_scene(SceneManagerEnum.Scene.ANIMAL_CHATROOM_SCENE_CHAT, "fade_1s")
 
 
+func _on_config_item_button_pressed() -> void:
+	LogWrapper.debug(self, "Config item button pressed")
+	if _item_config_scene:
+		var item_config: ItemConfigScene = _item_config_scene.instantiate()
+		item_config.back_requested.connect(_on_item_config_back_requested)
+		add_child(item_config)
+		item_config.visible = true
+		start_screen.visible = false
+	else:
+		LogWrapper.error(self, "Item config scene not loaded")
+
+
+func _on_item_config_back_requested() -> void:
+	LogWrapper.debug(self, "Item config back requested")
+	for child in get_children():
+		if child is ItemConfigScene:
+			child.queue_free()
+	start_screen.visible = true
+
+
 func _on_language_changed(_locale: String) -> void:
 	_refresh_labels()
 
@@ -131,6 +168,9 @@ func _disconnect_all_signals() -> void:
 	
 	if start_button and start_button.confirmed.is_connected(_on_start_button_pressed):
 		start_button.confirmed.disconnect(_on_start_button_pressed)
+	
+	if config_item_button and config_item_button.confirmed.is_connected(_on_config_item_button_pressed):
+		config_item_button.confirmed.disconnect(_on_config_item_button_pressed)
 	
 	LogWrapper.debug(self, "All signals disconnected")
 

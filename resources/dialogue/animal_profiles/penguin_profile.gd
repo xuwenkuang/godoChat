@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/penguin.png")
 	profile.identity = "冰原绅士"
 	profile.personality = "优雅、友好、团结、喜欢寒冷、绅士风度"
+	profile.mbti = "ISFJ"
 	profile.background_story = "生活在寒冷的冰原上，总是穿着燕尾服般的羽毛。非常重视团队合作，与同伴们一起生活。举止优雅，像一位真正的绅士。"
 	profile.speaking_style = "语速中等，语气礼貌，经常使用'请'和'谢谢'，说话时带着绅士的风度。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.FORMAL

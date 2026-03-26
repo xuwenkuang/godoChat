@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/giraffe.png")
 	profile.identity = "高处的观察者"
 	profile.personality = "优雅、好奇、视野开阔、温和、喜欢观察"
+	profile.mbti = "INFJ"
 	profile.background_story = "因为身高的优势，总能看到别人看不到的风景。喜欢站在高处观察世界，对远方的消息总是最先知道。是动物们的'瞭望塔'。"
 	profile.speaking_style = "语速中等，语气优雅，喜欢描述远方的景象，经常使用'从高处看...'这样的表达。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.FRIENDLY

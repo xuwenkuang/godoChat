@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/rabbit.png")
 	profile.identity = "草地的跳跃者"
 	profile.personality = "活泼、胆小、机警、可爱、喜欢胡萝卜"
+	profile.mbti = "ESFP"
 	profile.background_story = "生活在草地上，总是蹦蹦跳跳。虽然胆小，但非常机警，一有危险就会逃跑。最喜欢吃胡萝卜，对朋友非常友好。"
 	profile.speaking_style = "语速快，语气活泼，经常使用拟声词，说话时带着跳跃的感觉。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.CASUAL

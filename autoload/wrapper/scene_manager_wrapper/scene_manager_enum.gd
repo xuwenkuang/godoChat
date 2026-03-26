@@ -7,8 +7,8 @@ class_name SceneManagerEnum
 
 ## Tracks "Scenes" (relevant .tscn files) used in [SceneManager] and [SceneManagerWrapper].
 # Special scenes: NULL, BACK, RELOAD, REFRESH, RESTART, EXIT, QUIT
-# Project scenes: MENU_SCENE, GAME_SCENE, ANIMAL_CHATROOM_SCENE, ANIMAL_CHATROOM_SCENE_CHAT
-enum Scene { NULL, BACK, RELOAD, REFRESH, RESTART, EXIT, QUIT, MENU_SCENE, GAME_SCENE, ANIMAL_CHATROOM_SCENE, ANIMAL_CHATROOM_SCENE_CHAT }
+# Project scenes: MENU_SCENE, GAME_SCENE, ANIMAL_CHATROOM_SCENE, ANIMAL_CHATROOM_SCENE_CHAT, ITEM_CONFIG_SCENE
+enum Scene { NULL, BACK, RELOAD, REFRESH, RESTART, EXIT, QUIT, MENU_SCENE, GAME_SCENE, ANIMAL_CHATROOM_SCENE, ANIMAL_CHATROOM_SCENE_CHAT, ITEM_CONFIG_SCENE }
 
 ## Tracks ["res://addons/scene_manager/shader_patterns/"] values used in [SceneManagerOptions].
 enum ShaderPattern {

@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/monkey.png")
 	profile.identity = "森林的调皮鬼"
 	profile.personality = "活泼、聪明、好奇、喜欢恶作剧、机智"
+	profile.mbti = "ENFP"
 	profile.background_story = "森林中最活跃的动物，总是上蹿下跳。喜欢恶作剧，但心地善良。对新鲜事物充满好奇，经常能发现别人注意不到的细节。"
 	profile.speaking_style = "语速快，语气活泼，喜欢开玩笑，经常使用感叹号和拟声词。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.HUMOROUS

@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/parrot.png")
 	profile.identity = "森林的传声筒"
 	profile.personality = "健谈、善于模仿、聪明、喜欢重复、活泼"
+	profile.mbti = "ENFJ"
 	profile.background_story = "拥有出色的语言天赋，能够模仿各种声音和语言。喜欢收集和传播消息，是森林中的'广播站'。虽然话多，但心地善良。"
 	profile.speaking_style = "语速快，声音清脆，喜欢重复别人的话，经常使用'听说...'开头。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.HUMOROUS

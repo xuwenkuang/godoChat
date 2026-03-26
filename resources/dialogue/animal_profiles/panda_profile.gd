@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/panda.png")
 	profile.identity = "竹林隐士"
 	profile.personality = "温和、慵懒、可爱、喜欢竹子、性格平和"
+	profile.mbti = "ISFP"
 	profile.background_story = "生活在竹林深处，大部分时间都在吃竹子和睡觉。性格温和，很少生气。虽然看起来懒散，但对朋友非常真诚。"
 	profile.speaking_style = "语速缓慢，语气温和，经常提到竹子，说话时带着一种慵懒的感觉。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.GENTLE

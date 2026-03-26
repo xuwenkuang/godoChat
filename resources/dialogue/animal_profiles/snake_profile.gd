@@ -8,6 +8,7 @@ static func create_profile() -> NPCProfile:
 	profile.avatar_texture = load("res://assets/image/game/animal/png/round/snake.png")
 	profile.identity = "森林的智者"
 	profile.personality = "冷静、神秘、智慧、谨慎、善于观察"
+	profile.mbti = "INTJ"
 	profile.background_story = "生活在森林深处，总是静静地观察着一切。拥有古老的智慧，说话时总是带着神秘感。虽然外表冷酷，但内心善良，会给予有价值的建议。"
 	profile.speaking_style = "语速缓慢，声音低沉，说话时带着神秘的感觉，经常使用'嘶嘶'的声音。"
 	profile.dialogue_style = NPCProfile.DialogueStyle.MYSTERIOUS

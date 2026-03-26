@@ -16,6 +16,7 @@ signal npc_personality_changed(npc_id: String, personality: Dictionary)
 	"name": "",
 	"role": "",
 	"personality": "",
+	"mbti": "",
 	"background": "",
 	"speaking_style": ""
 }
@@ -142,6 +143,8 @@ func _load_npc_profile() -> void:
 		npc_personality.role = localized_personality.role
 	if localized_personality.personality != "":
 		npc_personality.personality = localized_personality.personality
+	if localized_personality.mbti != "":
+		npc_personality.mbti = localized_personality.mbti
 	if localized_personality.background != "":
 		npc_personality.background = localized_personality.background
 	if localized_personality.speaking_style != "":
@@ -159,6 +162,9 @@ func _build_system_prompt() -> void:
 	
 	if npc_personality.personality != "":
 		prompt_parts.append("你的性格特点: " + npc_personality.personality)
+	
+	if npc_personality.mbti != "":
+		prompt_parts.append("你的MBTI类型: " + npc_personality.mbti)
 	
 	if npc_personality.background != "":
 		prompt_parts.append("你的背景故事: " + npc_personality.background)
